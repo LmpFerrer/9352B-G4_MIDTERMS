@@ -1,0 +1,83 @@
+1. var pwaCard = document.querySelector('#pwa'); 
+var pwaCardContent = pwaCard.querySelector('.card_content'); 
+var pwaCardDetails = pwaCard.querySelector('.card_details'); 
+var detailsShown = false;
+
+if('serviceWorker' in navigator){
+	navigator.serviceWorker.register('sw.js');
+}
+
+pwaCard.addEventListener('click", function (event) { 
+	if (!detailsShown) {
+		detailsShown = true;
+		pwaCardContent.style.opacity = 0; 
+		pwaCardDetails.style.display = 'block'; 
+		pwaCardContent.style.display = none; 
+		setTimeout(function () {
+			pwaCardDetails.style.opacity = 1; 
+		}, 300); 
+	} else {
+		detailsShown = false; 
+		pwaCardDetails.style.opacity = 0; 
+		pwaCardContent.style.display = 'block'; 
+		pwaCardDetails.style.display = 'none' ; 
+		setTimeout(function () {
+			pwaCardContent.style.opacity = 1; 
+		}, 300);
+	}
+});
+
+2. <link rel = "manifest" href = "/manifest.json">
+
+3. {
+	"name": "A basic Progressive Web App", 
+	"short_name": "Basic PWA",
+	"start_url": ".", 
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "#ccc",
+	"theme_color": "#5FAAE5",
+	"icons": [
+		{
+			"src": "/src/images/icons/app-icon-96x96.png", "sizes": "96x96", "type": "image/png"
+		}
+		{
+			"src": "/src/images/icons/app-icon-144x144.png", "sizes": "144x144", "type": "image/png"
+		}
+		{
+			"src": "/src/images/icons/app-icon-256x256.png", "sizes": "256x256", "type": "image/png"
+		}
+		{
+			"src": "/src/images/icons/app-icon-512x512.png", "sizes": "512x512", "type": "image/png"
+		}
+	]
+}
+
+4.self.addEventListener('install', function (event) {
+console.log('SW Installed' );
+event.waitUntil(
+caches.open('static')
+	.then(function (cache) {
+	cache.addAll [
+		'/index.html',
+		'/src/js/app.js',
+		'/src/css/app.css',
+		'/src/images/pwa.jpg',
+		'https://fonts.googleapis.com/css?family=Raleway: 400,700'
+	]);
+self.addEventListener('activate', function () {
+	console.log('SW Activated');
+});
+self.addEventListener('fetch', function(event) {
+	event.respondWith(
+		caches.match(event. request)
+		then (function(res) {
+			if (res) {
+				return res;
+			} else {
+				return fetch(event.request);
+			}
+		})
+	);
+});
+
