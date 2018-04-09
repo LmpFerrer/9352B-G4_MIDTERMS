@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset = "utf-8"/>
+	<link rel="stylesheet" type="text/css" href="styles/stylesheet">
+</head>
+<body>
+	<div>
+		<p id="position"></p>
+	</div>
+	<div = "canvas">
+		<canvas id="myCanvas" width="5000" height="1000">		
+		</canvas>
+	</div>
+	<script>
+		window.onload = function() {
+			var canvas = document.getElementById('myCanvas'),
+			context = canvas.getContext('2d');
+			base_image = new Image();
+			base_image.src = 'Baguio.PNG';
+			base_image.onload = function(){
+				context.drawImage(base_image,10,100)
+
+			}
+		};
+		document.addEventListener("mousemove",function(event){
+                
+            var x = event.clientX;
+            var y = event.clientY;
+            
+            document.getElementById('position').innerHTML = " X = "+ x +" Y = "+ y;
+        });
+	</script>
+</body>
+	
+</html>
