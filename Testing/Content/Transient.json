@@ -1,0 +1,16 @@
+[
+ {
+   "name": "50's Diner",
+   "category": "American",
+   "location": "4/F Porta Vaga Mall, Session Road, Baguio City",
+   "left": "1306",
+   "top": "825",
+   "menu": [
+    {
+      "name": "Gangsta Gangsta",
+      "description": "Scarface warriors favorite, grilled porkchop, fried chicken, veg in oyster sauce, chicken roll, rice and egg",
+      "price": "140.00"
+    }
+   ]
+ }
+]
