@@ -1,0 +1,132 @@
+/*############ default ################*/
+html, body, nav, canvas {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+}
+
+canvas#map {
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+  background-image: url("map/zoom15.bmp");
+}
+
+/*############ responsive ##########*/
+
+@media screen and (max-width: 680px) {
+  div.container {
+    margin: 0;
+  }
+
+  canvas#map {
+    height: 100%;
+    width: auto;
+  }
+
+  form {
+    float: right;
+  }
+
+  
+}
+
+/*############# HIDDEN CONTENT ###############*/
+div.container div#rest-container {
+  margin-left: 10%;
+  margin-right: 80%;
+  margin-top: 100px;
+  width: 300px;
+  height: auto;
+  background-color: #eee;
+  overflow: hidden;
+  position: fixed;
+  display: none;
+}
+
+div.container div#rest-container.show {
+  display: block;
+}
+
+div.somebox {
+  padding: auto;
+}
+
+div.somebox h1 {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+div.somebox h3 {
+  padding-left: 10px;
+}
+
+div.somebox p {
+  padding-left: 10px;
+}
+
+div.somebox div.divBot {
+  margin: auto;
+  text-align: center;
+}
+
+div.somebox div.divBot button.menuButton {
+  font-size: 20px;
+  padding: 10px;
+}
+
+div.somebox div#menu {
+  overflow-y: scroll;
+  height: 160px;
+}
+
+.menuItem {
+  padding-left: 10px;
+}
+
+.menuItem p {
+  padding-left: 15px;
+}
+
+.menuItem h4 {
+  padding-left: 10px;
+}
+
+#mySidenav a {
+    position: fixed;
+    left: -120px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 10px;
+}
+
+#mySidenav a:hover {
+    left: 0;
+}
+
+#Search{
+    top: 20px;
+	margin-right:100px;
+    background-color: #4CAF50;
+	
+}
+
+#Baguio {
+    top: 80px;
+    background-color: #4CAF50;
+}
+
+
+#Transients {
+    top: 140px;
+    background-color: #2196F3;
+}
