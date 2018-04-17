@@ -20,6 +20,44 @@ window.onload = function() {
 	make_base();
 };
 
+//loading of map
+function make_base() {
+	var base_image = new Image();
+	base_image.src = 'map/zoom15.bmp';
+	base_image.onload = function() {
+		imgwid = base_image.width;
+		imghgt = base_image.height;
+		context.canvas.width = imgwid;
+		context.canvas.height = imghgt;
+	}
+};
+
+function markerRendering(){
+	request.onload = function() {
+		trans = request.response;
+		// Add element.
+		trans.forEach(function(transients) {
+			transients.push({
+				top: parseInt(data.Latitude, 10),
+				left: parseInt(data.Longitude, 10),
+				name: Data.Name
+			});
+		});
+		make_location(transients);
+	}
+}
+
+//click event
+document.getElementById("Transients").addEventListener("click", markerRendering()); 
+
+//create the locations for each collections
+function make_location(transients) {
+		var marker = new Image();
+		marker.src = 'images/marker.png';
+		for (i = 0; i < transients.length; i++) {
+			context.drawImage(marker,transients[i].latitude,transients[i].longitude,30,30);
+		};
+}
 
 
 if('serviceWorker' in navigator){
@@ -31,182 +69,6 @@ if('serviceWorker' in navigator){
     }
 }
 
-//loading of map
-function make_base() {
-	var base_image = new Image();
-	base_image.src = 'map/zoom15.bmp';
-	base_image.onload = function() {
-		imgwid = base_image.width;
-		imghgt = base_image.height;
-		context.canvas.width = imgwid;
-		context.canvas.height = imghgt;
-	}
-	
-	request.onload = function() {
-		trans = request.response;
-		
-		// Add element.
-		trans.forEach(function(building) {
-			transients.push({
-				top: parseInt(building.top, 10),
-				left: parseInt(building.left, 10),
-				name: building.name
-			});
-		});
-		
-		// Render elements.
-		make_location();
-		addClickEvent();
-	}
-	
-	
-};
-
-//create the locations for each collections
-function make_location() {
-	
-		var markerImage = new Image();
-		markerImage.src = "images/marker.png"
-		context.drawImage(markerImage,10,10,10,10);
-
-}
-
-/*
-
-//click event for all
-var clickRestaurant = function(event) {
-	var x = event.pageX - elemLeft;
-	var y = event.pageY - elemTop;
-	if(initWidth > 680) {
-		if(document.documentElement.clientWidth < 680) {
-			x = x + 250;
-		}
-	} else {
-		if(document.documentElement.clientWidth > 680) {
-			x = x - 250;
-		}
-	}
-	// Collision detection between clicked offset and element.
-	restaurants.forEach(function(restaurant) {
-		if (y < restaurant.top + restaurant.radius && y > restaurant.top - restaurant.radius
-			&& x < restaurant.left + restaurant.radius && x > restaurant.left - restaurant.radius) {
-			var restoName = restaurant.name;
-			buildContent(restoName);
-		}
-	});
-}
-
-var addClickEvent = function() {
-	area.addEventListener('click', clickRestaurant, false);
-}
-
-var removeClickEvent = function() {
-	area.removeEventListener('click', clickRestaurant, false);
-}
-
-//click event for some
-function clickSomeRestaurant(collections) {
-	return function(event) {
-		var x = event.pageX - elemLeft;
-		var y = event.pageY - elemTop;
-		if(initWidth > 680) {
-			if(document.documentElement.clientWidth < 680) {
-				x = x + 250;
-			}
-		} else {
-			if(document.documentElement.clientWidth > 680) {
-				x = x - 250;
-			}
-		}
-		// Collision detection between clicked offset and element.
-		collections.forEach(function(restaurant) {
-			if (y < restaurant.top + restaurant.radius && y > restaurant.top - restaurant.radius
-				&& x < restaurant.left + restaurant.radius && x > restaurant.left - restaurant.radius) {
-				var restoName = restaurant.name;
-				buildContent(restoName);
-			}
-		});
-	}
-}
-function buildContent(name) {
-	var container = document.getElementById('rest-container');
-	container.className = "show";
-	resto.forEach(function(restaurant) {
-		if(name == restaurant.name) {
-			container.innerHTML = createResto(restaurant.name, restaurant.category, restaurant.location);
-			var menuButton = document.getElementById('buttonMenu');
-			menuButton.onclick = function() {
-				var menuItems = document.getElementById('menu');
-				menuItems.innerHTML = "";
-				restaurant.menu.forEach(function(item) {
-					menuItems.innerHTML += menuItem(item.name, item.description, item.price);
-				});
-			}
-			var exit = document.getElementById('exitButton');
-			exit.onclick = function() {
-				container.className = "hidden";
-			};
-		}
-	})
-}
-var addSomeClickEvent = function(collections) {
-	area.addEventListener('click', clickSomeRestaurant(collections), false);
-}
-var removeSomeClickEvent = function(collections) {
-	area.removeEventListener('click', clickSomeRestaurant(collections), false);
-}
-
-//show per category
-var categories = document.getElementsByClassName('categ');
-for(var i = 0; i < categories.length; i++) {
-	categories[i].addEventListener('click', function() {
-		removeClickEvent();
-		removeSomeClickEvent(list);
-		var tempid = this.id;
-		context.clearRect(0, 0, imgwid, imghgt);
-		list = [];
-		resto.forEach(function(restaurant) {
-			if(tempid == restaurant.category) {
-				list.push({
-					colour: '#05EFFF',
-					top: parseInt(restaurant.top, 10),
-					left: parseInt(restaurant.left, 10),
-					radius: 10,
-					name: restaurant.name
-				});
-			}
-		});
-		make_location(list);
-		addSomeClickEvent(list);
-	});
-}
-//create html elements
-function createResto(name, category, location) {
-	var html = `<div class="somebox">
-	<h1>${name}</h1>
-	<h3>Category: ${category}</h3>
-	<p>Location: </br> ${location}</p>
-	<div class="divBot">
-		<button class="menuButton" id="buttonMenu">Menu</button>
-	</div>
-	<div id="menu">
-	</div>
-	<div class="divBot">
-		<button class="menuButton" id="exitButton">Exit</button>
-	</div>
-	</div>`
-	return html;
-}
-//create menu
-function menuItem(name, description, price) {
-  var html = `<div class="menuItem">
-	<h3>${name}</h3>
-	<p>${description}</p>
-	<h4>price: ${price}</h4>
-	</div>`
-  return html;
-}
-*/
 
 //search function
 var icon = document.getElementById('Search');
