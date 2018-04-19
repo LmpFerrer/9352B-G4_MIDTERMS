@@ -1,14 +1,21 @@
 self.addEventListener('install', function(event) {
+	const timeStamp = Date.now();
 	console.log('SW Installed');
 	event.waitUntil(
-		caches.open('static')
+		caches.open('Tahanan')
 			.then(function (cache) {
 				cache.addAll([
-					'/index.html',
-					'/js/app.js',
-					'/css/styles.css',
-					'/images/Baguio.png',
-					'/images/marker.png'
+					'/',
+					'/js/datass.json?timestamp=${timeStamp}',
+					'/manifest.json?timestamp=${timeStamp}',
+					'/index.html?timestamp=${timeStamp}',
+					'/js/app.js?timestamp=${timeStamp}',
+					'/css/styles.css?timestamp=${timeStamp}',
+					'/images/Baguio.png?timestamp=${timeStamp}',
+					'/images/marker.png?timestamp=${timeStamp}',
+					'/images/icons/96x96.png?timestamp=${timeStamp}',
+					'/images/icons/144x144.png?timestamp=${timeStamp}',
+					'/images/icons/256x256.png?timestamp=${timeStamp}'
 				]);
 			})
 	);
