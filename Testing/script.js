@@ -69,7 +69,7 @@ function locations(collections) {
 }
 
 //Click Transients
-document.getElementById("Transients").addEventListener("onclick", function (){
+document.getElementById("Transients").addEventListener("click", function (){
 	locations(houses);
 }); 
 
@@ -81,9 +81,26 @@ document.getElementById("Baguio").addEventListener("click", function (){
 
 //Click Search
 document.getElementById("Search").addEventListener("click", function (){
-	
 });
 
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("Search");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+};
 
 
 if('serviceWorker' in navigator){

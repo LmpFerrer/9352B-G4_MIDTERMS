@@ -11,15 +11,35 @@
     <div class="container">
         <div id="rest-container">
 	    </div>
+		
 		<div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="#" id="Search">Search</a>
 			<a href="#" id="Baguio">Baguio</a>
 			<a href="#" id="Transients">Transients</a>
 		</div>
+		
 		<span class="Menu" onclick="openNav()">&#9776; Menu</span>
 		<canvas id="map"></canvas>
-        
+		
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<form action="/action_page.php">
+					<label for="fname">Name of the Transient</label>
+					<input type="text" id="fname" name="firstname" placeholder="Name">
+					<label for="prices">Prices</label>
+					<select id="prices" name="prices">
+					  <option value="low">1-100</option>
+					  <option value="medium">100-1000</option>
+					  <option value="high">1000+</option>
+					</select>
+					<input type="submit" value="Submit">
+				  </form>
+			</div>
+		</div>
     </div>
     <script src="script.js" type="text/javascript"></script>
     <script src="dragscroll.js" type="text/javascript"></script>
