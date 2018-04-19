@@ -1,15 +1,15 @@
-var area = document.getElementById('map');
+var area = document.getElementById("map");
 var elemLeft = area.offsetLeft;
 var elemTop = area.offsetTop;
 var context = area.getContext('2d');
-var transients = [];
-var trans;
+var houses = [];
+var house;
 var initWidth;
 var imgwid;
 var imghgt;
 var list;
 //loading of JSON file
-var requestUrl = 'data.json';
+var requestUrl = 'js/datass.json';
 var request = new XMLHttpRequest();
 
 window.onload = function() {
@@ -17,11 +17,19 @@ window.onload = function() {
 	request.open('GET', requestUrl);
 	request.responseType = 'json';
 	request.send();
-	make_base();
+	loadMap();
 };
 
+function openNav() {
+    document.getElementById("mySidenav").style.width = "300px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
 //loading of map
-function make_base() {
+function loadMap() {
 	var base_image = new Image();
 	base_image.src = 'map/zoom15.bmp';
 	base_image.onload = function() {
@@ -29,35 +37,53 @@ function make_base() {
 		imghgt = base_image.height;
 		context.canvas.width = imgwid;
 		context.canvas.height = imghgt;
+	};
+	
+	request.onload = function() {
+		console.log("Storing elements in array");
+		house = request.response;
+		console.log(house);
+		house.forEach(function(datass){
+			houses.push({
+			x:parseInt(datass.Latitude, 10),
+			y:parseInt(datass.Longtitude, 10)
+			});
+		});
 	}
 };
 
-function markerRendering(){
-	request.onload = function() {
-		trans = request.response;
-		// Add element.
-		trans.forEach(function(transients) {
-			transients.push({
-				top: parseInt(data.Latitude, 10),
-				left: parseInt(data.Longitude, 10),
-				name: Data.Name
-			});
-		});
-		make_location(transients);
-	}
+//adding markers to the map
+function addMarkerPoints(x,y){
+	var marker = new Image();
+	marker.src = './images/marker.png';
+	var canvas = document.getElementById('map'),
+	context = canvas.getContext('2d');
+	context.drawImage(marker,x,y,30,30);
+};
+
+//setting the points according to the array
+function locations(collections) {
+	collections.forEach(function(datass) {
+		addMarkerPoints(datass.x,datass.y);
+	});
 }
 
-//click event
-document.getElementById("Transients").addEventListener("click", markerRendering()); 
+//Click Transients
+document.getElementById("Transients").addEventListener("onclick", function (){
+	locations(houses);
+}); 
 
-//create the locations for each collections
-function make_location(transients) {
-		var marker = new Image();
-		marker.src = 'images/marker.png';
-		for (i = 0; i < transients.length; i++) {
-			context.drawImage(marker,transients[i].latitude,transients[i].longitude,30,30);
-		};
-}
+//Click Baguio
+document.getElementById("Baguio").addEventListener("click", function (){
+	context.clearRect(0, 0, imgwid, imghgt);
+	loadmap();
+});
+
+//Click Search
+document.getElementById("Search").addEventListener("click", function (){
+	
+});
+
 
 
 if('serviceWorker' in navigator){
@@ -67,28 +93,4 @@ if('serviceWorker' in navigator){
     } catch (error) {
         console.log('SW registration failed');
     }
-}
-
-
-//search function
-var icon = document.getElementById('Search');
-icon.onclick = function() {
-	var form = document.getElementById('inputForm');
-	resto.forEach(function(restaurant) {
-		if(form.elements[0].value.toLowerCase() === restaurant.name.toLowerCase()) {
-			removeClickEvent();
-			removeSomeClickEvent(list);
-			context.clearRect(0, 0, imgwid, imghgt);
-			list = [];
-			list.push({
-				colour: '#05EFFF',
-				top: parseInt(restaurant.top, 10),
-				left: parseInt(restaurant.left, 10),
-				radius: 10,
-				name: restaurant.name
-			});
-			make_location(list);
-			addSomeClickEvent(list);
-		}
-	});
-}
+};
