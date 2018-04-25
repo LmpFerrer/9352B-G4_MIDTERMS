@@ -1,117 +1,124 @@
 /*############ default ################*/
-html, body, nav, canvas {
-  display: block;
-  padding: 0;
-  margin: 0;
+
+html,
+body,
+nav,
+canvas {
+    display: block;
+    padding: 0;
+    margin: 0;
 }
 
 body {
-  height: 100%;
-  font-family: "Lato", sans-serif;
+    height: 100%;
+    font-family: "Lato", sans-serif;
 }
 
 canvas#map {
-  height: 100%;
-  width: auto;
-  overflow: hidden;
-  background-image: url("images/BAGUIO.png");
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+    background-image: url("images/BAGUIO.png");
 }
 
 /*############ responsive ##########*/
 
 @media screen and (max-width: 680px) {
-  div.container {
-    margin: 0;
-  }
+    div.container {
+        margin: 0;
+    }
 
-  canvas#map {
-    height: 100%;
-    width: auto;
-  }
+    canvas#map {
+        height: 100%;
+        width: auto;
+    }
 
-  form {
-    float: right;
-  }
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    form {
+        float: right;
+    }
+    .sidenav {
+        padding-top: 16px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
 /*############# HIDDEN CONTENT ###############*/
+
 div.container div#rest-container {
-  margin-left: 10%;
-  margin-right: 80%;
-  margin-top: 100px;
-  width: 300px;
-  height: auto;
-  background-color: #eee;
-  overflow: hidden;
-  position: fixed;
-  display: none;
+    margin-left: 10%;
+    margin-right: 80%;
+    margin-top: 100px;
+    width: 300px;
+    height: auto;
+    background-color: #eee;
+    overflow: hidden;
+    position: fixed;
+    display: none;
 }
 
 div.container div#rest-container.show {
-  display: block;
+    display: block;
 }
 
 div.somebox {
-  padding: auto;
+    padding: auto;
 }
 
 div.somebox h1 {
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 div.somebox h3 {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 div.somebox p {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 div.somebox div.divBot {
-  margin: auto;
-  text-align: center;
+    margin: auto;
+    text-align: center;
 }
 
 div.somebox div.divBot button.menuButton {
-  font-size: 20px;
-  padding: 10px;
+    font-size: 20px;
+    padding: 10px;
 }
 
 div.somebox div#menu {
-  overflow-y: scroll;
-  height: 160px;
+    overflow-y: scroll;
+    height: 160px;
 }
 
 .menuItem {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 .menuItem p {
-  padding-left: 15px;
+    padding-left: 15px;
 }
 
 .menuItem h4 {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
-.Menu{
-	top: 20px;
-	margin-right:100px;
-    background-color: #4CAF50;
-	font-size:20px;
-	cursor:pointer;
-	position: fixed;
+.Menu {
+    top: 20px;
+    margin-right: 100px;
+    font-size: 22px;
+    cursor: pointer;
+    position: fixed;
     transition: 0.3s;
-    padding: 15px;
+    padding: 12px 0 12px 10px;
     width: 100px;
     text-decoration: none;
-    font-size: 20px;
-    color: white;
-    border-radius: 0 5px 5px 10px;
+    color: #fff;
+    background-color: #05a3ff;
 }
 
 .sidenav {
@@ -124,60 +131,121 @@ div.somebox div#menu {
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 43px;
+    margin: 0;
+    box-shadow: 2px 0px 4px grey;
+    background-color: rgb(0, 0, 0);
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 10px 8px 10px 8px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+    font-size: 21px;
+    color: #9e9e9e;
     display: block;
-    transition: 0.3s;
+    text-align: center;
+    transition: .7s;
+    letter-spacing: 2px;
 }
 
-.sidenav a:hover {
-    color: #f1f1f1;
+.sidenav a:hover,
+.sidenav a:focus {
+    color: #fafafa;
+    font-weight: 560;
+    letter-spacing: 6px;
 }
 
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 15px;
     font-size: 36px;
-    margin-left: 50px;
 }
 
 /* The Modal (background) */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Black w/ opacity */
 }
 
 /* Modal Content */
+
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    box-shadow: 0 2px 9px grey;
+}
+
+@media only screen and (max-width: 600px) {
+    .modal-content {
+        padding: 10px 1.5em 15em 1.5em;
+        width: 65%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .modal-content {
+        padding: 10px 1.5em 15em 1.5em;
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 680px) {
+    .modal-content {
+        padding: 10px 1.5em 5em 1.5em;
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .modal-content {
+        padding: 10px 1.5em 5em 1.5em;
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .modal-content {
+        padding: 10px 2em 5em 2em;
+        width: 30%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .modal-content {
+        padding: 7px 2em 5em 2em;
+        width: 25%;
+    }
 }
 
 /* The Close Button */
+
 .close {
     color: #aaaaaa;
     float: right;
-    font-size: 28px;
+    font-size: 39px;
     font-weight: bold;
+    margin-top: -5px;
+    transition: 0.3s;
 }
 
 .close:hover,
@@ -187,27 +255,56 @@ div.somebox div#menu {
     cursor: pointer;
 }
 
-input[type=text], select {
+input[type=text],
+select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     box-sizing: border-box;
+    border: 2px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.3s;
+    outline: none;
+    border-radius: 7px;
+    margin-top: 10px;
 }
 
 input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
+    width: 46%;
+    margin-top: 20px;
+    float: right;
+    display: inline-block;
+    padding: 10px 1px;
+    font-size: 16px;
     cursor: pointer;
+    text-align: center;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #05a3ff;
+    border: none;
+    transition: 0.3s;
 }
 
-input[type=submit]:hover {
-    background-color: #45a049;
+input[type=submit]:hover,
+input[type=submit]:focus {
+    background-color: #008cb7;
+    letter-spacing: 3px;
+    font-weight: 550;
+}
+
+.Menu:hover {
+    background-color: #008cb7;
+}
+
+input[type=text]:focus,
+select:focus {
+    border: 2px solid #555;
+}
+
+
+img {
+    width: 50%;
+    display: block;
+    margin: auto;
 }
