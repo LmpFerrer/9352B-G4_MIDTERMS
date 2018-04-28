@@ -31,9 +31,15 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span><br><br><br>
-                <form action="/action_page.php">
+                <form id="form" action="/action_page.php">
                     <label for="fname">Name of the Transient</label>
                     <input type="text" id="fname" name="firstname" placeholder="Name">
+					<label for="prices">Capacity</label>
+					<select id="prices" name="prices">
+                      <option></option>
+					  <option value="low">1 person</option>
+					  <option value="medium">2 person</option>
+					</select>
                     <label for="prices">Prices</label>
                     <select id="prices" name="prices">
                       <option></option>
@@ -41,7 +47,7 @@
 					  <option value="medium">3000-5000</option>
 					  <option value="high">5000+</option>
 					</select>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Search">
                 </form>
             </div>
         </div>

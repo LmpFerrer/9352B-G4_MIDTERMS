@@ -95,7 +95,7 @@ var addClickEvent = function() {
 var removeClickEvent = function() {
 	area.removeEventListener('click', clickHouse, false);
 }
-
+//shows the click content
 function buildContent(name) {
 	var container = document.getElementById('rest-container');
 	container.className = "show";
@@ -103,11 +103,10 @@ function buildContent(name) {
 		if(name == datass.Name) {
 			container.innerHTML = createMenu(datass.Name, datass.Capacity, datass.Price, datass.Address);
 		}
-	})
+	});
 }
-
+//returns a innerHTML
 function createMenu(Name, Capacity, Price, Address) {
-	console.log(houses);
 	var html = `<div class="menu">
 	<h1>${Name}</h1>
 	<h3>Capacity: ${Capacity}</h3>
@@ -120,22 +119,22 @@ function createMenu(Name, Capacity, Price, Address) {
 var otherClickEvent = function(collections) {
 	area.addEventListener('click', otherHouses(collections), false);
 }
+
 var removeOtherClickEvent = function(collections) {
 	area.removeEventListener('click', otherHouses(collections), false);
 }
+
 //some houses only
 function otherHouses(collections) {
-    console.log("tangina");
-    console.log(houses);
 	return function(event) {
 		var x = event.pageX - elemLeft;
 		var y = event.pageY - elemTop;
 		collections.forEach(function(datass) {
-		if (y > datass.y && y < datass.y + datass.height 
-            && x > datass.x && x < datass.x + datass.width) {
-			var balay = datass.Name;
-			buildContent(balay);
-		}
+			if (y > datass.y && y < datass.y + datass.height 
+				&& x > datass.x && x < datass.x + datass.width) {
+				var balay = datass.Name;
+				buildContent(balay);
+			}
 		});
 	}
 }
@@ -196,11 +195,24 @@ document.getElementById("Transients").addEventListener("click", function (){
     otherClickEvent(houses);
 }); 
 
+//to clear the innerhtml
+function clear() {
+    document.getElementById('rest-container').innerHTML = "";
+}
+
 //Click Baguio
 document.getElementById("Baguio").addEventListener("click", function (){
 	context.clearRect(0, 0, imgwid, imghgt);
-	loadmap();
+	removeOtherClickEvent();
+	clear();
 });
+//collecting information
+var clickMeh = function getData(){
+	var data = document.getElementById("form");
+	var name = data.elements[0].value;
+	var capacity = data.elements[1].value;
+	var price = data.elements[2].value;
+}
 
 //Click Search
 document.getElementById("Search").addEventListener("click", function (){

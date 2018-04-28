@@ -18,7 +18,7 @@ canvas#map {
     height: 100%;
     width: auto;
     overflow: hidden;
-    background-image: url("images/BAGUIO.png");
+    background-image: url("map/zoom15.bmp");
 }
 
 /*############ responsive ##########*/
@@ -52,10 +52,11 @@ div.container div#rest-container {
     margin-top: 100px;
     width: 300px;
     height: auto;
-    background-color: #eee;
+    background-color: #e0e4f2;
     overflow: hidden;
     position: fixed;
     display: none;
+	border-radius: 50px;
 }
 
 div.container div#rest-container.show {
@@ -119,6 +120,7 @@ div.somebox div#menu {
     text-decoration: none;
     color: #fff;
     background-color: #05a3ff;
+	border-radius: 5px;
 }
 
 .sidenav {
